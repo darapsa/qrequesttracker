@@ -1,3 +1,4 @@
+*.a
 *.pro.user
 *.o
 *.qmake.stash
