@@ -29,7 +29,6 @@ namespace RTClient {
 
 			explicit TicketList(QObject* parent = nullptr)
 				: QAbstractListModel{parent} {}
-			~TicketList() {}
 
 			int rowCount(QModelIndex const& parent
 					= QModelIndex()) const Q_DECL_OVERRIDE;
