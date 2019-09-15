@@ -1,0 +1,7 @@
+*.pro.user
+*.o
+*.qmake.stash
+*.so*
+*.swp
+Makefile
+moc_*

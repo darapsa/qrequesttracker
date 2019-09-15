@@ -1,0 +1,3 @@
+[submodule "librtclient"]
+	path = librtclient
+	url = git@github.com:darapsa/librtclient.git
