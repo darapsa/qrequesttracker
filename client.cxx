@@ -67,7 +67,7 @@ namespace RTClient {
 				, privileged);
 	}
 
-	void Client::search(QString const& owner)
+	void Client::ticketSearch(QString const& owner)
 	{
 		QString query{"Owner='"};
 		query.append(owner);

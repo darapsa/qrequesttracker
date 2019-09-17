@@ -43,7 +43,7 @@ namespace RTClient {
 					, rtclient_timezone timeZone = RTCLIENT_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
-			void search(QString const& owner);
+			void ticketSearch(QString const& owner);
 
 		signals:
 			void logged(rtclient_user* user);
