@@ -19,29 +19,29 @@ namespace RTClient {
 		public slots:
 			void logIn(QString const& name, QString const& password);
 			void userNew(QString const& name
-					, QString const& emailAddress
-					, QString const& realName
-					, QString const& nickName
-					, QString const& gecos
-					, int lang
-					, int timeZone
-					, QString const& contactInfo
-					, bool enabled
-					, bool privileged
 					, QString const& password
-					, QString const& comments
-					, QString const& signature
-					, QString const& organization
-					, QString const& address1
-					, QString const& address2
-					, QString const& city
-					, QString const& state
-					, QString const& zip
-					, QString const& country
-					, QString const& homePhone
-					, QString const& workPhone
-					, QString const& mobilePhone
-					, QString const& pagerPhone);
+					, QString const& emailAddress = nullptr
+					, QString const& realName = nullptr
+					, QString const& nickName = nullptr
+					, QString const& organization = nullptr
+					, QString const& address1 = nullptr
+					, QString const& address2 = nullptr
+					, QString const& city = nullptr
+					, QString const& state = nullptr
+					, QString const& zip = nullptr
+					, QString const& country = nullptr
+					, QString const& homePhone = nullptr
+					, QString const& workPhone = nullptr
+					, QString const& mobilePhone = nullptr
+					, QString const& pagerPhone = nullptr
+					, QString const& contactInfo = nullptr
+					, QString const& comments = nullptr
+					, QString const& signature = nullptr
+					, QString const& gecos = nullptr
+					, int lang = 0
+					, int timeZone = 0
+					, bool disabled = false
+					, bool privileged = false);
 			void search(QString const& owner);
 
 		signals:

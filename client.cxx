@@ -17,18 +17,10 @@ namespace RTClient {
 	}
 
 	void Client::userNew(QString const& name
+			, QString const& password
 			, QString const& emailAddress
 			, QString const& realName
 			, QString const& nickName
-			, QString const& gecos
-			, int lang
-			, int timeZone
-			, QString const& contactInfo
-			, bool enabled
-			, bool privileged
-			, QString const& password
-			, QString const& comments
-			, QString const& signature
 			, QString const& organization
 			, QString const& address1
 			, QString const& address2
@@ -39,7 +31,15 @@ namespace RTClient {
 			, QString const& homePhone
 			, QString const& workPhone
 			, QString const& mobilePhone
-			, QString const& pagerPhone)
+			, QString const& pagerPhone
+			, QString const& contactInfo
+			, QString const& comments
+			, QString const& signature
+			, QString const& gecos
+			, int lang
+			, int timeZone
+			, bool disabled
+			, bool privileged)
 	{
 		rtclient_user_new(name.toLatin1().constData()
 				, emailAddress.toLatin1().constData()
@@ -49,7 +49,7 @@ namespace RTClient {
 				, static_cast<enum rt_lang>(lang)
 				, static_cast<enum rt_timezone>(timeZone)
 				, contactInfo.toLatin1().constData()
-				, enabled
+				, disabled
 				, privileged
 				, password.toLatin1().constData()
 				, comments.toLatin1().constData()
