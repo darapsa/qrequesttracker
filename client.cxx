@@ -72,9 +72,9 @@ namespace RTClient {
 		QString query{"Owner='"};
 		query.append(owner);
 		query.append("'");
-		rt_ticketlist* taskList = NULL;
-		rtclient_ticket_search(&taskList, query.toLatin1().constData());
-		if (taskList) emit foundTasks(taskList);
+		rt_ticketlist* ticketList = NULL;
+		rtclient_ticket_search(&ticketList, query.toLatin1().constData());
+		if (ticketList) emit foundTickets(ticketList);
 	}
 
 	Client::~Client()

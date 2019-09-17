@@ -42,12 +42,12 @@ namespace RTClient {
 		signals:
 			void rowCountChanged();
 
+		private slots:
+			void addTickets(struct rt_ticketlist* ticketList);
+
 		private:
 			QList<Ticket> tickets;
 			void addTicket(Ticket const& ticket);
-
-		private slots:
-			void addTickets(struct rt_ticketlist* ticketList);
 	};
 
 }

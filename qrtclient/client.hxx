@@ -47,7 +47,7 @@ namespace RTClient {
 
 		signals:
 			void logged(struct rt_user* user);
-			void foundTasks(struct rt_ticketlist* list);
+			void foundTickets(struct rt_ticketlist* list);
 	};
 
 }
