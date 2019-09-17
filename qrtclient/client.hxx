@@ -18,6 +18,30 @@ namespace RTClient {
 
 		public slots:
 			void logIn(QString const& name, QString const& password);
+			void userNew(QString const& name
+					, QString const& emailAddress
+					, QString const& realName
+					, QString const& nickName
+					, QString const& gecos
+					, int lang
+					, int timeZone
+					, QString const& contactInfo
+					, bool enabled
+					, bool privileged
+					, QString const& password
+					, QString const& comments
+					, QString const& signature
+					, QString const& organization
+					, QString const& address1
+					, QString const& address2
+					, QString const& city
+					, QString const& state
+					, QString const& zip
+					, QString const& country
+					, QString const& homePhone
+					, QString const& workPhone
+					, QString const& mobilePhone
+					, QString const& pagerPhone);
 			void search(QString const& owner);
 
 		signals:
