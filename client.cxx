@@ -36,24 +36,16 @@ namespace RTClient {
 			, QString const& comments
 			, QString const& signature
 			, QString const& gecos
-			, int lang
-			, int timeZone
+			, enum rt_lang lang
+			, enum rt_timezone timeZone
 			, bool disabled
 			, bool privileged)
 	{
 		rtclient_user_new(name.toLatin1().constData()
+				, password.toLatin1().constData()
 				, emailAddress.toLatin1().constData()
 				, realName.toLatin1().constData()
 				, nickName.toLatin1().constData()
-				, gecos.toLatin1().constData()
-				, static_cast<enum rt_lang>(lang)
-				, static_cast<enum rt_timezone>(timeZone)
-				, contactInfo.toLatin1().constData()
-				, disabled
-				, privileged
-				, password.toLatin1().constData()
-				, comments.toLatin1().constData()
-				, signature.toLatin1().constData()
 				, organization.toLatin1().constData()
 				, address1.toLatin1().constData()
 				, address2.toLatin1().constData()
@@ -64,7 +56,15 @@ namespace RTClient {
 				, homePhone.toLatin1().constData()
 				, workPhone.toLatin1().constData()
 				, mobilePhone.toLatin1().constData()
-				, pagerPhone.toLatin1().constData());
+				, pagerPhone.toLatin1().constData()
+				, contactInfo.toLatin1().constData()
+				, comments.toLatin1().constData()
+				, signature.toLatin1().constData()
+				, gecos.toLatin1().constData()
+				, lang
+				, timeZone
+				, disabled
+				, privileged);
 	}
 
 	void Client::search(QString const& owner)

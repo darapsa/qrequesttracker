@@ -2,6 +2,7 @@
 #define QRTCLIENT_HXX
 
 #include <QObject>
+#include <rtclient/user.h>
 
 struct rt_user;
 struct rt_ticketlist;
@@ -38,8 +39,8 @@ namespace RTClient {
 					, QString const& comments = nullptr
 					, QString const& signature = nullptr
 					, QString const& gecos = nullptr
-					, int lang = 0
-					, int timeZone = 0
+					, enum rt_lang lang = RT_LANG_NONE
+					, enum rt_timezone timeZone = RT_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
 			void search(QString const& owner);
