@@ -39,7 +39,7 @@ namespace RTClient {
 		emit rowCountChanged();
 	}
 
-	void TicketList::addTickets(rt_ticketlist* ticketList)
+	void TicketList::addTickets(rtclient_ticketlist* ticketList)
 	{
 		for (unsigned int i = 0; i < ticketList->length; i++)
 			addTicket(Ticket{ticketList->tickets[i]});

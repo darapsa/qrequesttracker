@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 
-struct rt_ticketlist;
+struct rtclient_ticketlist;
 
 namespace RTClient {
 
@@ -43,7 +43,7 @@ namespace RTClient {
 			void rowCountChanged();
 
 		private slots:
-			void addTickets(struct rt_ticketlist* ticketList);
+			void addTickets(rtclient_ticketlist* ticketList);
 
 		private:
 			QList<Ticket> tickets;

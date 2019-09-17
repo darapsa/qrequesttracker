@@ -11,7 +11,7 @@ namespace RTClient {
 	void Client::logIn(QString const& name, QString const& password)
 	{
 		rtclient_login(name.toLatin1().constData(), password.toLatin1().constData());
-		struct rt_user* user = NULL;
+		rtclient_user* user = NULL;
 		rtclient_user_show(&user, name.toLatin1().constData());
 		if (user) emit logged(user);
 	}
@@ -36,8 +36,8 @@ namespace RTClient {
 			, QString const& comments
 			, QString const& signature
 			, QString const& gecos
-			, enum rt_lang lang
-			, enum rt_timezone timeZone
+			, rtclient_lang lang
+			, rtclient_timezone timeZone
 			, bool disabled
 			, bool privileged)
 	{
@@ -72,7 +72,7 @@ namespace RTClient {
 		QString query{"Owner='"};
 		query.append(owner);
 		query.append("'");
-		rt_ticketlist* ticketList = NULL;
+		rtclient_ticketlist* ticketList = NULL;
 		rtclient_ticket_search(&ticketList, query.toLatin1().constData());
 		if (ticketList) emit foundTickets(ticketList);
 	}

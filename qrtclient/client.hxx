@@ -4,8 +4,8 @@
 #include <QObject>
 #include <rtclient/user.h>
 
-struct rt_user;
-struct rt_ticketlist;
+struct rtclient_user;
+struct rtclient_ticketlist;
 
 namespace RTClient {
 
@@ -39,15 +39,15 @@ namespace RTClient {
 					, QString const& comments = nullptr
 					, QString const& signature = nullptr
 					, QString const& gecos = nullptr
-					, enum rt_lang lang = RT_LANG_NONE
-					, enum rt_timezone timeZone = RT_TIMEZONE_NONE
+					, rtclient_lang lang = RTCLIENT_LANG_NONE
+					, rtclient_timezone timeZone = RTCLIENT_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
 			void search(QString const& owner);
 
 		signals:
-			void logged(struct rt_user* user);
-			void foundTickets(struct rt_ticketlist* list);
+			void logged(rtclient_user* user);
+			void foundTickets(rtclient_ticketlist* list);
 	};
 
 }
