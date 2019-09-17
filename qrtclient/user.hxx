@@ -2,6 +2,7 @@
 #define QRTCLIENT_USER_HXX
 
 #include <QObject>
+#include <rtclient/user.h>
 
 struct rt_user;
 
@@ -27,10 +28,14 @@ namespace RTClient {
 		Q_PROPERTY(QString workPhone READ workPhone WRITE setWorkPhone NOTIFY workPhoneChanged)
 		Q_PROPERTY(QString mobilePhone READ mobilePhone WRITE setMobilePhone NOTIFY mobilePhoneChanged)
 		Q_PROPERTY(QString pagerPhone READ pagerPhone WRITE setPagerPhone NOTIFY pagerPhoneChanged)
-		Q_PROPERTY(QString lang READ lang WRITE setLang NOTIFY langChanged)
+		Q_PROPERTY(QString contactInfo READ contactInfo WRITE setContactInfo NOTIFY contactInfoChanged)
+		Q_PROPERTY(QString comments READ comments WRITE setComments NOTIFY commentsChanged)
+		Q_PROPERTY(QString signature READ signature WRITE setSignature NOTIFY signatureChanged)
+		Q_PROPERTY(QString gecos READ gecos WRITE setGecos NOTIFY gecosChanged)
+		Q_PROPERTY(rt_lang lang READ lang WRITE setLang NOTIFY langChanged)
+		Q_PROPERTY(rt_timezone timeZone READ timeZone WRITE setTimeZone NOTIFY timeZoneChanged)
 		Q_PROPERTY(bool privileged READ privileged WRITE setPrivileged NOTIFY privilegedChanged)
 		Q_PROPERTY(bool disabled READ disabled WRITE setDisabled NOTIFY disabledChanged)
-		Q_PROPERTY(bool loggedIn READ loggedIn WRITE setLoggedIn NOTIFY loggedInChanged)
 
 		public:
 			explicit User(QObject* parent = nullptr)
@@ -42,7 +47,6 @@ namespace RTClient {
 				, m_realName{""}
 				, m_nickName{""}
 				, m_organization{""}
-				, m_gecos{""}
 				, m_address1{""}
 				, m_address2{""}
 				, m_city{""}
@@ -55,10 +59,12 @@ namespace RTClient {
 				, m_pagerPhone{""}
 				, m_contactInfo{""}
 				, m_comments{""}
-				, m_lang{""}
+				, m_signature{""}
+				, m_gecos{""}
+				, m_lang{RT_LANG_NONE}
+				, m_timeZone{RT_TIMEZONE_NONE}
 				, m_privileged{false}
 				, m_disabled{true}
-				, m_loggedIn{false}
 				{}
 			~User() {}
 
@@ -79,10 +85,14 @@ namespace RTClient {
 			QString const& workPhone() const { return m_workPhone; }
 			QString const& mobilePhone() const { return m_mobilePhone; }
 			QString const& pagerPhone() const { return m_pagerPhone; }
-			QString const& lang() const { return m_lang; }
+			QString const& contactInfo() const { return m_contactInfo; }
+			QString const& comments() const { return m_comments; }
+			QString const& signature() const { return m_signature; }
+			QString const& gecos() const { return m_gecos; }
+			rt_lang lang() const { return m_lang; }
+			rt_timezone timeZone() const { return m_timeZone; }
 			bool privileged() const { return m_privileged; }
 			bool disabled() const { return m_disabled; }
-			bool loggedIn() const { return m_loggedIn; }
 
 			void setId(QString const& id);
 			void setName(QString const& name);
@@ -101,10 +111,14 @@ namespace RTClient {
 			void setWorkPhone(QString const& workPhone);
 			void setMobilePhone(QString const& mobilePhone);
 			void setPagerPhone(QString const& pagerPhone);
-			void setLang(QString const& lang);
+			void setContactInfo(QString const& contactInfo);
+			void setComments(QString const& comments);
+			void setSignature(QString const& signature);
+			void setGecos(QString const& gecos);
+			void setLang(rt_lang lang);
+			void setTimeZone(rt_timezone timeZone);
 			void setPrivileged(bool privileged);
 			void setDisabled(bool disabled);
-			void setLoggedIn(bool loggedIn);
 
 		signals:
 			void idChanged();
@@ -114,7 +128,6 @@ namespace RTClient {
 			void realNameChanged();
 			void nickNameChanged();
 			void organizationChanged();
-			void gecosChanged();
 			void address1Changed();
 			void address2Changed();
 			void cityChanged();
@@ -125,13 +138,17 @@ namespace RTClient {
 			void workPhoneChanged();
 			void mobilePhoneChanged();
 			void pagerPhoneChanged();
+			void contactInfoChanged();
+			void commentsChanged();
+			void signatureChanged();
+			void gecosChanged();
 			void langChanged();
+			void timeZoneChanged();
 			void privilegedChanged();
 			void disabledChanged();
-			void loggedInChanged();
 
 		private slots:
-			void update(struct rt_user* user);
+			void update(rt_user* user);
 
 		private:
 			QString m_id;
@@ -141,7 +158,6 @@ namespace RTClient {
 			QString m_realName;
 			QString m_nickName;
 			QString m_organization;
-			QString m_gecos;
 			QString m_address1;
 			QString m_address2;
 			QString m_city;
@@ -154,10 +170,12 @@ namespace RTClient {
 			QString m_pagerPhone;
 			QString m_contactInfo;
 			QString m_comments;
-			QString m_lang;
+			QString m_signature;
+			QString m_gecos;
+			rt_lang m_lang;
+			rt_timezone m_timeZone;
 			bool m_privileged;
 			bool m_disabled;
-			bool m_loggedIn;
 	};
 
 }

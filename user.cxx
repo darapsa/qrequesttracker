@@ -139,11 +139,51 @@ namespace RTClient {
 		}
 	}
 
-	void User::setLang(QString const& lang)
+	void User::setContactInfo(QString const& contactInfo)
+	{
+		if (m_contactInfo != contactInfo) {
+			m_contactInfo = contactInfo;
+			emit contactInfoChanged();
+		}
+	}
+
+	void User::setComments(QString const& comments)
+	{
+		if (m_comments != comments) {
+			m_comments = comments;
+			emit commentsChanged();
+		}
+	}
+
+	void User::setSignature(QString const& signature)
+	{
+		if (m_signature != signature) {
+			m_signature = signature;
+			emit signatureChanged();
+		}
+	}
+
+	void User::setGecos(QString const& gecos)
+	{
+		if (m_gecos != gecos) {
+			m_gecos = gecos;
+			emit gecosChanged();
+		}
+	}
+
+	void User::setLang(rt_lang lang)
 	{
 		if (m_lang != lang) {
 			m_lang = lang;
 			emit langChanged();
+		}
+	}
+
+	void User::setTimeZone(rt_timezone timeZone)
+	{
+		if (m_timeZone != timeZone) {
+			m_timeZone = timeZone;
+			emit timeZoneChanged();
 		}
 	}
 
@@ -163,39 +203,89 @@ namespace RTClient {
 		}
 	}
 
-	void User::setLoggedIn(bool loggedIn)
-	{
-		if (m_loggedIn != loggedIn) {
-			m_loggedIn = loggedIn;
-			emit loggedInChanged();
-		}
-	}
-
 	void User::update(rt_user* user)
 	{
 		if (user) {
-			m_id = user->id;
-			m_emailAddress = user->emailaddress;
-			emit emailAddressChanged();
-			m_realName = user->realname;
-			emit realNameChanged();
-			m_nickName = user->nickname;
-			m_gecos = user->gecos;
-			m_organization = user->organization;
-			m_address1 = user->address1;
-			m_address2 = user->address2;
-			m_city = user->city;
-			m_state = user->state;
-			m_zip = user->zip;
-			m_country = user->country;
-			m_homePhone = user->homephone;
-			m_workPhone = user->workphone;
-			m_mobilePhone = user->mobilephone;
-			m_pagerPhone = user->pagerphone;
-			m_lang = user->lang;
-			m_privileged = user->privileged;
-			m_disabled = user->disabled;
-			m_loggedIn = true;
+			if (user->id) {
+				m_id = user->id;
+				emit idChanged();
+			}
+			if (user->emailaddress) {
+				m_emailAddress = user->emailaddress;
+				emit emailAddressChanged();
+			}
+			if (user->realname) {
+				m_realName = user->realname;
+				emit realNameChanged();
+			}
+			if (user->nickname) {
+				m_nickName = user->nickname;
+				emit nickNameChanged();
+			}
+			if (user->organization) {
+				m_organization = user->organization;
+				emit organizationChanged();
+			}
+			if (user->address1) {
+				m_address1 = user->address1;
+				emit address1Changed();
+			}
+			if (user->address2) {
+				m_address2 = user->address2;
+				emit address2Changed();
+			}
+			if (user->city) {
+				m_city = user->city;
+				emit cityChanged();
+			}
+			if (user->state) {
+				m_state = user->state;
+				emit stateChanged();
+			}
+			if (user->zip) {
+				m_zip = user->zip;
+				emit zipChanged();
+			}
+			if (user->country) {
+				m_country = user->country;
+				emit countryChanged();
+			}
+			if (user->homephone) {
+				m_homePhone = user->homephone;
+				emit homePhoneChanged();
+			}
+			if (user->workphone) {
+				m_workPhone = user->workphone;
+				emit workPhoneChanged();
+			}
+			if (user->mobilephone) {
+				m_mobilePhone = user->mobilephone;
+				emit mobilePhoneChanged();
+			}
+			if (user->pagerphone) {
+				m_pagerPhone = user->pagerphone;
+				emit pagerPhoneChanged();
+			}
+			if (user->gecos) {
+				m_gecos = user->gecos;
+				emit gecosChanged();
+			}
+			if (user->timezone) {
+				m_timeZone = user->timezone;
+				emit timeZoneChanged();
+			}
+			if (user->lang) {
+				m_lang = user->lang;
+				emit langChanged();
+			}
+			if (user->privileged) {
+				m_privileged = user->privileged;
+				emit privilegedChanged();
+			}
+			if (!user->disabled) {
+				m_disabled = user->disabled;
+				emit disabledChanged();
+			}
 			rtclient_user_free(user);
 		} else {
 			m_id = "";
@@ -215,10 +305,14 @@ namespace RTClient {
 			m_workPhone = "";
 			m_mobilePhone = "";
 			m_pagerPhone = "";
-			m_lang = "";
+			m_contactInfo = "";
+			m_comments = "";
+			m_signature = "";
+			m_gecos = "";
+			m_lang = RT_LANG_NONE;
+			m_timeZone = RT_TIMEZONE_NONE;
 			m_privileged = false;
 			m_disabled = true;
-			m_loggedIn = false;
 		}
 	}
 
