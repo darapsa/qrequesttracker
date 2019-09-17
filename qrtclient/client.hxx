@@ -1,5 +1,5 @@
-#ifndef QRTCLIENT_HXX
-#define QRTCLIENT_HXX
+#ifndef QRTCLIENT_CLIENT_HXX
+#define QRTCLIENT_CLIENT_HXX
 
 #include <QObject>
 #include <rtclient/user.h>
@@ -52,4 +52,4 @@ namespace RTClient {
 
 }
 
-#endif // QRTCLIENT_HXX
+#endif // QRTCLIENT_CLIENT_HXX
