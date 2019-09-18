@@ -67,6 +67,37 @@ namespace RTClient {
 				, privileged);
 	}
 
+	void Client::ticketNew(QString const& queue
+			, QString const& requestor
+			, QString const& subject
+			, QString const& cc
+			, QString const& admincc
+			, QString const& owner
+			, QString const& status
+			, QString const& priority
+			, QString const& initialpriority
+			, QString const& finalpriority
+			, QString const& timeestimated
+			, QString const& starts
+			, QString const& due
+			, QString const& text)
+	{
+		rtclient_ticket_new(queue.toLatin1().constData()
+			, requestor.toLatin1().constData()
+			, subject.toLatin1().constData()
+			, cc.toLatin1().constData()
+			, admincc.toLatin1().constData()
+			, owner.toLatin1().constData()
+			, status.toLatin1().constData()
+			, priority.toLatin1().constData()
+			, initialpriority.toLatin1().constData()
+			, finalpriority.toLatin1().constData()
+			, timeestimated.toLatin1().constData()
+			, starts.toLatin1().constData()
+			, due.toLatin1().constData()
+			, text.toLatin1().constData());
+	}
+
 	void Client::ticketSearch(QString const& owner)
 	{
 		QString query{"Owner='"};

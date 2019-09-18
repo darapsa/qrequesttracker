@@ -43,6 +43,20 @@ namespace RTClient {
 					, rtclient_timezone timeZone = RTCLIENT_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
+			void ticketNew(QString const& queue = nullptr
+					, QString const& requestor = nullptr
+					, QString const& subject = nullptr
+					, QString const& cc = nullptr
+					, QString const& admincc = nullptr
+					, QString const& owner = nullptr
+					, QString const& status = nullptr
+					, QString const& priority = nullptr
+					, QString const& initialpriority = nullptr
+					, QString const& finalpriority = nullptr
+					, QString const& timeestimated = nullptr
+					, QString const& starts = nullptr
+					, QString const& due = nullptr
+					, QString const& text = nullptr);
 			void ticketSearch(QString const& owner);
 
 		signals:
