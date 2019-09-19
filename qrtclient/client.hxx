@@ -43,6 +43,8 @@ namespace RTClient {
 					, rtclient_timezone timeZone = RTCLIENT_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
+			void userShow(unsigned int id);
+			void userShow(QString const& name);
 			void ticketNew(QString const& queue = nullptr
 					, QString const& requestor = nullptr
 					, QString const& subject = nullptr
@@ -60,7 +62,8 @@ namespace RTClient {
 			void ticketSearch(QString const& owner);
 
 		signals:
-			void logged(rtclient_user* user);
+			void loggedIn(QString const& name);
+			void userShown(rtclient_user* user);
 			void foundTickets(rtclient_ticketlist* list);
 	};
 

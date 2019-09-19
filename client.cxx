@@ -11,9 +11,7 @@ namespace RTClient {
 	void Client::logIn(QString const& name, QString const& password)
 	{
 		rtclient_login(name.toLatin1().constData(), password.toLatin1().constData());
-		rtclient_user* user = NULL;
-		rtclient_user_show(&user, name.toLatin1().constData());
-		if (user) emit logged(user);
+		emit loggedIn(name);
 	}
 
 	void Client::userNew(QString const& name
@@ -65,6 +63,20 @@ namespace RTClient {
 				, timeZone
 				, disabled
 				, privileged);
+	}
+
+	void Client::userShow(unsigned int id)
+	{
+		rtclient_user* user = NULL;
+		rtclient_user_showid(&user, id);
+		if (user) emit userShown(user);
+	}
+
+	void Client::userShow(QString const& name)
+	{
+		rtclient_user* user = NULL;
+		rtclient_user_showname(&user, name.toLatin1().constData());
+		if (user) emit userShown(user);
 	}
 
 	void Client::ticketNew(QString const& queue
