@@ -71,14 +71,14 @@ namespace RTClient {
 	{
 		rtclient_user* user = NULL;
 		rtclient_user_showid(&user, id);
-		if (user) emit userShown(user);
+		emit userShown(user);
 	}
 
 	void Client::userShow(QString const& name)
 	{
 		rtclient_user* user = NULL;
 		rtclient_user_showname(&user, name.toLatin1().constData());
-		if (user) emit userShown(user);
+		emit userShown(user);
 	}
 
 	void Client::ticketNew(QString const& queue
@@ -117,7 +117,7 @@ namespace RTClient {
 		QString query = "Owner='" % owner % "'";;
 		rtclient_ticketlist* ticketList = NULL;
 		rtclient_ticket_search(&ticketList, query.toLatin1().constData());
-		if (ticketList) emit ticketSearched(ticketList);
+		emit ticketSearched(ticketList);
 	}
 
 	Client::~Client()
