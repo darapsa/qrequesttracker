@@ -44,6 +44,7 @@ namespace RTClient {
 		for (unsigned int i = 0; i < ticketList->length; i++)
 			addTicket(Ticket{ticketList->tickets[i]});
 		rtclient_ticket_freelist(ticketList);
+		emit updated();
 	}
 
 }
