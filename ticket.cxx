@@ -1,4 +1,5 @@
-#include <rtclient/client.h>
+#include <cstddef>
+#include <rtclient/ticket.h>
 #include "qrtclient/ticket.hxx"
 
 namespace RTClient {
@@ -41,7 +42,7 @@ namespace RTClient {
 
 	void TicketList::update(rtclient_ticketlist* ticketList)
 	{
-		for (unsigned int i = 0; i < ticketList->length; i++)
+		for (size_t i = 0; i < ticketList->length; i++)
 			addTicket(Ticket{ticketList->tickets[i]});
 		rtclient_ticket_freelist(ticketList);
 		emit updated();

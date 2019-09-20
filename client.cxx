@@ -1,5 +1,6 @@
 #include <QStringBuilder>
 #include <rtclient/client.h>
+#include <rtclient/ticket.h>
 #include "qrtclient/client.hxx"
 
 namespace RTClient {

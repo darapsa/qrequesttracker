@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <rtclient/client.h>
 #include "qrtclient/user.hxx"
 
