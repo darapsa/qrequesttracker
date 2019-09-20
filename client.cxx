@@ -1,3 +1,4 @@
+#include <QStringBuilder>
 #include <rtclient/client.h>
 #include "qrtclient/client.hxx"
 
@@ -112,9 +113,7 @@ namespace RTClient {
 
 	void Client::ticketSearch(QString const& owner)
 	{
-		QString query{"Owner='"};
-		query.append(owner);
-		query.append("'");
+		QString query = "Owner='" % owner % "'";;
 		rtclient_ticketlist* ticketList = NULL;
 		rtclient_ticket_search(&ticketList, query.toLatin1().constData());
 		if (ticketList) emit foundTickets(ticketList);
