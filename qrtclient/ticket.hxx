@@ -43,7 +43,7 @@ namespace RTClient {
 			void rowCountChanged();
 
 		private slots:
-			void addTickets(rtclient_ticketlist* ticketList);
+			void update(rtclient_ticketlist* ticketList);
 
 		private:
 			QList<Ticket> tickets;
