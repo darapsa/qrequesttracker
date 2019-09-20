@@ -11,7 +11,7 @@ namespace RTClient {
 	class User : public QObject
 	{
 		Q_OBJECT
-		Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
+		Q_PROPERTY(unsigned int id READ id WRITE setId NOTIFY idChanged)
 		Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 		Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
 		Q_PROPERTY(QString emailAddress READ emailAddress WRITE setEmailAddress NOTIFY emailAddressChanged)
@@ -40,7 +40,7 @@ namespace RTClient {
 		public:
 			explicit User(QObject* parent = nullptr)
 				: QObject{parent}
-				, m_id{""}
+				, m_id{0}
 				, m_name{""}
 				, m_password{""}
 				, m_emailAddress{""}
@@ -68,7 +68,7 @@ namespace RTClient {
 				{}
 			~User() {}
 
-			QString const& id() const { return m_id; }
+			unsigned int id() const { return m_id; }
 			QString const& name() const { return m_name; }
 			QString const& password() const { return m_password; }
 			QString const& emailAddress() const { return m_emailAddress; }
@@ -94,7 +94,7 @@ namespace RTClient {
 			bool privileged() const { return m_privileged; }
 			bool disabled() const { return m_disabled; }
 
-			void setId(QString const& id);
+			void setId(unsigned int id);
 			void setName(QString const& name);
 			void setPassword(QString const& password);
 			void setEmailAddress(QString const& emailAddress);
@@ -151,7 +151,7 @@ namespace RTClient {
 			void update(rtclient_user* user);
 
 		private:
-			QString m_id;
+			unsigned int m_id;
 			QString m_name;
 			QString m_password;
 			QString m_emailAddress;

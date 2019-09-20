@@ -4,7 +4,7 @@
 
 namespace RTClient {
 
-	void User::setId(QString const& id)
+	void User::setId(unsigned int id)
 	{
 		if (m_id != id) {
 			m_id = id;
@@ -289,7 +289,7 @@ namespace RTClient {
 			}
 			rtclient_user_free(user);
 		} else {
-			m_id = "";
+			m_id = 0;
 			m_name = "";
 			m_password = "";
 			m_emailAddress = "";
