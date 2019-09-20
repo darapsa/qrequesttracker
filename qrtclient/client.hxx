@@ -64,7 +64,7 @@ namespace RTClient {
 		signals:
 			void loggedIn(QString const& name);
 			void userShown(rtclient_user* user);
-			void foundTickets(rtclient_ticketlist* list);
+			void ticketSearched(rtclient_ticketlist* list);
 	};
 
 }
