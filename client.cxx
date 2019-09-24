@@ -5,9 +5,9 @@
 
 namespace RTClient {
 
-	Client::Client(QString const& url)
+	Client::Client(char const* url, char const* certificate)
 	{
-		rtclient_init(url.toLatin1().constData());
+		rtclient_init(url, certificate);
 	}
 
 	void Client::logIn(QString const& name, QString const& password)

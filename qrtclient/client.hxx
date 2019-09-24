@@ -14,7 +14,7 @@ namespace RTClient {
 		Q_OBJECT
 
 		public:
-			Client(QString const& url);
+			Client(char const* url, char const* certificate = NULL);
 			~Client();
 
 		public slots:
