@@ -2,6 +2,7 @@
 #define QRTCLIENT_TICKET_HXX
 
 #include <QAbstractListModel>
+#include <rtclient/ticket.h>
 
 struct rtclient_ticketlist;
 
@@ -10,10 +11,15 @@ namespace RTClient {
 	class Ticket
 	{
 		public:
-			Ticket(QString subject) : m_subject{subject} {}
+			Ticket(rtclient_ticket* ticket)
+				: m_id{ticket->id}
+				, m_subject{ticket->subject}
+			{}
+			unsigned int id() const { return m_id; }
 			QString const& subject() const { return m_subject; }
 
 		private:
+			unsigned int m_id;
 			QString m_subject;
 	};
 
@@ -24,7 +30,8 @@ namespace RTClient {
 
 		public:
 			enum TicketRoles {
-				SubjectRole = Qt::UserRole + 1,
+				IdRole = Qt::UserRole + 1,
+				SubjectRole
 			};
 
 			explicit TicketList(QObject* parent = nullptr)

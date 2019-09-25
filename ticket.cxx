@@ -1,5 +1,4 @@
 #include <cstddef>
-#include <rtclient/ticket.h>
 #include "qrtclient/ticket.hxx"
 
 namespace RTClient {
@@ -18,6 +17,8 @@ namespace RTClient {
 
 		auto ticket = tickets[row];
 		switch (role) {
+			case IdRole:
+				return ticket.id();
 			case SubjectRole:
 				return ticket.subject();
 			default:
@@ -28,7 +29,8 @@ namespace RTClient {
 	QHash<int, QByteArray> TicketList::roleNames() const
 	{
 		return QHash<int, QByteArray>{
-			{SubjectRole, "subject"}
+			{IdRole, "subject"}
+			, {SubjectRole, "subject"}
 		};
 	}
 
