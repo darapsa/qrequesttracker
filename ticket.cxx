@@ -29,7 +29,7 @@ namespace RTClient {
 	QHash<int, QByteArray> TicketList::roleNames() const
 	{
 		return QHash<int, QByteArray>{
-			{IdRole, "subject"}
+			{IdRole, "id"}
 			, {SubjectRole, "subject"}
 		};
 	}
