@@ -43,15 +43,15 @@ namespace RTClient {
 					, int role = Qt::DisplayRole
 					) const Q_DECL_OVERRIDE;
 
+		public slots:
+			void update(rtclient_ticketlist* ticketList);
+
 		protected:
 			QHash<int, QByteArray> roleNames() const Q_DECL_OVERRIDE;
 
 		signals:
 			void updated();
 			void rowCountChanged();
-
-		private slots:
-			void update(rtclient_ticketlist* ticketList);
 
 		private:
 			QList<Ticket> tickets;
