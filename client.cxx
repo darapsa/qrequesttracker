@@ -120,6 +120,11 @@ namespace RTClient {
 		emit ticketSearched(ticketList);
 	}
 
+	void Client::ticketHistory(int id)
+	{
+		rtclient_ticket_history(id);
+	}
+
 	Client::~Client()
 	{
 		rtclient_cleanup();

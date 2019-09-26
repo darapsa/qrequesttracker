@@ -120,6 +120,9 @@ namespace RTClient {
 			void setPrivileged(bool privileged);
 			void setDisabled(bool disabled);
 
+		public slots:
+			void update(rtclient_user* user);
+
 		signals:
 			void idChanged();
 			void nameChanged();
@@ -146,9 +149,6 @@ namespace RTClient {
 			void timeZoneChanged();
 			void privilegedChanged();
 			void disabledChanged();
-
-		private slots:
-			void update(rtclient_user* user);
 
 		private:
 			unsigned int m_id;
