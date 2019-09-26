@@ -1,8 +1,7 @@
-*.a
-*.pro.user
-*.o
-*.qmake.stash
-*.so*
-*.swp
+libqrtclient.a
 Makefile
 moc_*
+*.o
+.qmake.stash
+qrtclient.pro.user
+*.swp
