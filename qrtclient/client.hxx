@@ -5,7 +5,8 @@
 #include <rtclient/user.h>
 
 struct rtclient_user;
-struct rtclient_ticketlist;
+struct rtclient_search_ticket_list;
+struct rtclient_ticket_history_list;
 
 namespace RTClient {
 
@@ -39,8 +40,10 @@ namespace RTClient {
 					, QString const& comments = nullptr
 					, QString const& signature = nullptr
 					, QString const& gecos = nullptr
-					, rtclient_lang lang = RTCLIENT_LANG_NONE
-					, rtclient_timezone timeZone = RTCLIENT_TIMEZONE_NONE
+					, rtclient_user_lang lang
+						= RTCLIENT_USER_LANG_NONE
+					, rtclient_user_timezone timezone
+						= RTCLIENT_USER_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
 			void userShow(unsigned int id);
@@ -49,23 +52,24 @@ namespace RTClient {
 					, QString const& requestor = nullptr
 					, QString const& subject = nullptr
 					, QString const& cc = nullptr
-					, QString const& admincc = nullptr
+					, QString const& adminCc = nullptr
 					, QString const& owner = nullptr
 					, QString const& status = nullptr
 					, QString const& priority = nullptr
-					, QString const& initialpriority = nullptr
-					, QString const& finalpriority = nullptr
-					, QString const& timeestimated = nullptr
+					, QString const& initialPriority = nullptr
+					, QString const& finalPriority = nullptr
+					, QString const& timeEstimated = nullptr
 					, QString const& starts = nullptr
 					, QString const& due = nullptr
 					, QString const& text = nullptr);
-			void ticketSearch(QString const& owner);
+			void searchTicket(QString const& owner);
 			void ticketHistory(int id);
 
 		signals:
 			void loggedIn(QString const& name);
 			void userShown(rtclient_user* user);
-			void ticketSearched(rtclient_ticketlist* list);
+			void searchedTicket(rtclient_search_ticket_list* list);
+			void gotTicketHistory(rtclient_ticket_history_list* list);
 	};
 
 }

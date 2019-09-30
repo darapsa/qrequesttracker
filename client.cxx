@@ -1,6 +1,7 @@
 #include <QStringBuilder>
 #include <rtclient/client.h>
 #include <rtclient/ticket.h>
+#include <rtclient/search.h>
 #include "qrtclient/client.hxx"
 
 namespace RTClient {
@@ -36,8 +37,8 @@ namespace RTClient {
 			, QString const& comments
 			, QString const& signature
 			, QString const& gecos
-			, rtclient_lang lang
-			, rtclient_timezone timeZone
+			, rtclient_user_lang lang
+			, rtclient_user_timezone timezone
 			, bool disabled
 			, bool privileged)
 	{
@@ -62,7 +63,7 @@ namespace RTClient {
 				, signature.toLatin1().constData()
 				, gecos.toLatin1().constData()
 				, lang
-				, timeZone
+				, timezone
 				, disabled
 				, privileged);
 	}
@@ -85,13 +86,13 @@ namespace RTClient {
 			, QString const& requestor
 			, QString const& subject
 			, QString const& cc
-			, QString const& admincc
+			, QString const& adminCc
 			, QString const& owner
 			, QString const& status
 			, QString const& priority
-			, QString const& initialpriority
-			, QString const& finalpriority
-			, QString const& timeestimated
+			, QString const& initialPriority
+			, QString const& finalPriority
+			, QString const& timeEstimated
 			, QString const& starts
 			, QString const& due
 			, QString const& text)
@@ -100,29 +101,31 @@ namespace RTClient {
 			, requestor.toLatin1().constData()
 			, subject.toLatin1().constData()
 			, cc.toLatin1().constData()
-			, admincc.toLatin1().constData()
+			, adminCc.toLatin1().constData()
 			, owner.toLatin1().constData()
 			, status.toLatin1().constData()
 			, priority.toLatin1().constData()
-			, initialpriority.toLatin1().constData()
-			, finalpriority.toLatin1().constData()
-			, timeestimated.toLatin1().constData()
+			, initialPriority.toLatin1().constData()
+			, finalPriority.toLatin1().constData()
+			, timeEstimated.toLatin1().constData()
 			, starts.toLatin1().constData()
 			, due.toLatin1().constData()
 			, text.toLatin1().constData());
 	}
 
-	void Client::ticketSearch(QString const& owner)
+	void Client::searchTicket(QString const& owner)
 	{
 		QString query{"Owner='" % owner % "'"};
-		rtclient_ticketlist* ticketList = nullptr;
-		rtclient_ticket_search(&ticketList, query.toLatin1().constData());
-		emit ticketSearched(ticketList);
+		rtclient_search_ticket_list* ticketList = nullptr;
+		rtclient_search_ticket(&ticketList, query.toLatin1().constData());
+		emit searchedTicket(ticketList);
 	}
 
 	void Client::ticketHistory(int id)
 	{
-		rtclient_ticket_history(id);
+		rtclient_ticket_history_list* historyList = nullptr;
+		rtclient_ticket_history(&historyList, id);
+		emit gotTicketHistory(historyList);
 	}
 
 	Client::~Client()

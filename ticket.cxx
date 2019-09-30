@@ -42,12 +42,12 @@ namespace RTClient {
 		emit rowCountChanged();
 	}
 
-	void TicketList::update(rtclient_ticketlist* ticketList)
+	void TicketList::update(rtclient_search_ticket_list* ticketList)
 	{
 		if (ticketList) {
 			for (size_t i = 0; i < ticketList->length; i++)
 				addTicket(Ticket{ticketList->tickets[i]});
-			rtclient_ticket_freelist(ticketList);
+			rtclient_search_ticket_free(ticketList);
 		}
 		emit updated();
 	}

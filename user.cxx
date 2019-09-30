@@ -172,7 +172,7 @@ namespace RTClient {
 		}
 	}
 
-	void User::setLang(rtclient_lang lang)
+	void User::setLang(rtclient_user_lang lang)
 	{
 		if (m_lang != lang) {
 			m_lang = lang;
@@ -180,11 +180,11 @@ namespace RTClient {
 		}
 	}
 
-	void User::setTimeZone(rtclient_timezone timeZone)
+	void User::setTimeZone(rtclient_user_timezone timezone)
 	{
-		if (m_timeZone != timeZone) {
-			m_timeZone = timeZone;
-			emit timeZoneChanged();
+		if (m_timezone != timezone) {
+			m_timezone = timezone;
+			emit timezoneChanged();
 		}
 	}
 
@@ -211,16 +211,16 @@ namespace RTClient {
 				m_id = user->id;
 				emit idChanged();
 			}
-			if (user->emailaddress) {
-				m_emailAddress = user->emailaddress;
+			if (user->email_address) {
+				m_emailAddress = user->email_address;
 				emit emailAddressChanged();
 			}
-			if (user->realname) {
-				m_realName = user->realname;
+			if (user->real_name) {
+				m_realName = user->real_name;
 				emit realNameChanged();
 			}
-			if (user->nickname) {
-				m_nickName = user->nickname;
+			if (user->nick_name) {
+				m_nickName = user->nick_name;
 				emit nickNameChanged();
 			}
 			if (user->organization) {
@@ -251,20 +251,20 @@ namespace RTClient {
 				m_country = user->country;
 				emit countryChanged();
 			}
-			if (user->homephone) {
-				m_homePhone = user->homephone;
+			if (user->home_phone) {
+				m_homePhone = user->home_phone;
 				emit homePhoneChanged();
 			}
-			if (user->workphone) {
-				m_workPhone = user->workphone;
+			if (user->work_phone) {
+				m_workPhone = user->work_phone;
 				emit workPhoneChanged();
 			}
-			if (user->mobilephone) {
-				m_mobilePhone = user->mobilephone;
+			if (user->mobile_phone) {
+				m_mobilePhone = user->mobile_phone;
 				emit mobilePhoneChanged();
 			}
-			if (user->pagerphone) {
-				m_pagerPhone = user->pagerphone;
+			if (user->pager_phone) {
+				m_pagerPhone = user->pager_phone;
 				emit pagerPhoneChanged();
 			}
 			if (user->gecos) {
@@ -272,8 +272,8 @@ namespace RTClient {
 				emit gecosChanged();
 			}
 			if (user->timezone) {
-				m_timeZone = user->timezone;
-				emit timeZoneChanged();
+				m_timezone = user->timezone;
+				emit timezoneChanged();
 			}
 			if (user->lang) {
 				m_lang = user->lang;
@@ -310,8 +310,8 @@ namespace RTClient {
 			m_comments = "";
 			m_signature = "";
 			m_gecos = "";
-			m_lang = RTCLIENT_LANG_NONE;
-			m_timeZone = RTCLIENT_TIMEZONE_NONE;
+			m_lang = RTCLIENT_USER_LANG_NONE;
+			m_timezone = RTCLIENT_USER_TIMEZONE_NONE;
 			m_privileged = false;
 			m_disabled = true;
 		}
