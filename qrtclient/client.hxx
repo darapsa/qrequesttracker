@@ -6,6 +6,7 @@
 
 struct rtclient_user;
 struct rtclient_search_ticket_list;
+struct rtclient_ticket_history_list;
 
 namespace RTClient {
 
@@ -68,6 +69,7 @@ namespace RTClient {
 			void loggedIn(QString const& name);
 			void userShown(rtclient_user* user);
 			void searchedTicket(rtclient_search_ticket_list* list);
+			void gotTicketHistory(rtclient_ticket_history_list* list);
 	};
 
 }
