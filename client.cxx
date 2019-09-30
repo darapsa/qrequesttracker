@@ -85,13 +85,13 @@ namespace RTClient {
 			, QString const& requestor
 			, QString const& subject
 			, QString const& cc
-			, QString const& admincc
+			, QString const& adminCc
 			, QString const& owner
 			, QString const& status
 			, QString const& priority
-			, QString const& initialpriority
-			, QString const& finalpriority
-			, QString const& timeestimated
+			, QString const& initialPriority
+			, QString const& finalPriority
+			, QString const& timeEstimated
 			, QString const& starts
 			, QString const& due
 			, QString const& text)
@@ -100,13 +100,13 @@ namespace RTClient {
 			, requestor.toLatin1().constData()
 			, subject.toLatin1().constData()
 			, cc.toLatin1().constData()
-			, admincc.toLatin1().constData()
+			, adminCc.toLatin1().constData()
 			, owner.toLatin1().constData()
 			, status.toLatin1().constData()
 			, priority.toLatin1().constData()
-			, initialpriority.toLatin1().constData()
-			, finalpriority.toLatin1().constData()
-			, timeestimated.toLatin1().constData()
+			, initialPriority.toLatin1().constData()
+			, finalPriority.toLatin1().constData()
+			, timeEstimated.toLatin1().constData()
 			, starts.toLatin1().constData()
 			, due.toLatin1().constData()
 			, text.toLatin1().constData());

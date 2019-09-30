@@ -50,13 +50,13 @@ namespace RTClient {
 					, QString const& requestor = nullptr
 					, QString const& subject = nullptr
 					, QString const& cc = nullptr
-					, QString const& admincc = nullptr
+					, QString const& adminCc = nullptr
 					, QString const& owner = nullptr
 					, QString const& status = nullptr
 					, QString const& priority = nullptr
-					, QString const& initialpriority = nullptr
-					, QString const& finalpriority = nullptr
-					, QString const& timeestimated = nullptr
+					, QString const& initialPriority = nullptr
+					, QString const& finalPriority = nullptr
+					, QString const& timeEstimated = nullptr
 					, QString const& starts = nullptr
 					, QString const& due = nullptr
 					, QString const& text = nullptr);
