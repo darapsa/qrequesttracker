@@ -4,7 +4,7 @@
 #include <QAbstractListModel>
 #include <rtclient/ticket.h>
 
-struct rtclient_ticketlist;
+struct rtclient_ticket_list;
 
 namespace RTClient {
 
@@ -44,7 +44,7 @@ namespace RTClient {
 					) const Q_DECL_OVERRIDE;
 
 		public slots:
-			void update(rtclient_ticketlist* ticketList);
+			void update(rtclient_ticket_list* ticketList);
 
 		protected:
 			QHash<int, QByteArray> roleNames() const Q_DECL_OVERRIDE;

@@ -5,7 +5,7 @@
 #include <rtclient/user.h>
 
 struct rtclient_user;
-struct rtclient_ticketlist;
+struct rtclient_ticket_list;
 
 namespace RTClient {
 
@@ -40,7 +40,8 @@ namespace RTClient {
 					, QString const& signature = nullptr
 					, QString const& gecos = nullptr
 					, rtclient_lang lang = RTCLIENT_LANG_NONE
-					, rtclient_timezone timeZone = RTCLIENT_TIMEZONE_NONE
+					, rtclient_timezone timeZone
+						= RTCLIENT_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
 			void userShow(unsigned int id);
@@ -65,7 +66,7 @@ namespace RTClient {
 		signals:
 			void loggedIn(QString const& name);
 			void userShown(rtclient_user* user);
-			void ticketSearched(rtclient_ticketlist* list);
+			void ticketSearched(rtclient_ticket_list* list);
 	};
 
 }
