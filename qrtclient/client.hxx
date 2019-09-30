@@ -5,7 +5,7 @@
 #include <rtclient/user.h>
 
 struct rtclient_user;
-struct rtclient_ticket_list;
+struct rtclient_search_ticket_list;
 
 namespace RTClient {
 
@@ -67,7 +67,7 @@ namespace RTClient {
 		signals:
 			void loggedIn(QString const& name);
 			void userShown(rtclient_user* user);
-			void ticketSearched(rtclient_ticket_list* list);
+			void ticketSearched(rtclient_search_ticket_list* list);
 	};
 
 }
