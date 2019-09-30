@@ -41,7 +41,7 @@ namespace RTClient {
 					, QString const& gecos = nullptr
 					, rtclient_user_lang lang
 						= RTCLIENT_USER_LANG_NONE
-					, rtclient_user_timezone timeZone
+					, rtclient_user_timezone timezone
 						= RTCLIENT_USER_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);

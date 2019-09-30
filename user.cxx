@@ -180,11 +180,11 @@ namespace RTClient {
 		}
 	}
 
-	void User::setTimeZone(rtclient_user_timezone timeZone)
+	void User::setTimeZone(rtclient_user_timezone timezone)
 	{
-		if (m_timeZone != timeZone) {
-			m_timeZone = timeZone;
-			emit timeZoneChanged();
+		if (m_timezone != timezone) {
+			m_timezone = timezone;
+			emit timezoneChanged();
 		}
 	}
 
@@ -272,8 +272,8 @@ namespace RTClient {
 				emit gecosChanged();
 			}
 			if (user->timezone) {
-				m_timeZone = user->timezone;
-				emit timeZoneChanged();
+				m_timezone = user->timezone;
+				emit timezoneChanged();
 			}
 			if (user->lang) {
 				m_lang = user->lang;
@@ -311,7 +311,7 @@ namespace RTClient {
 			m_signature = "";
 			m_gecos = "";
 			m_lang = RTCLIENT_USER_LANG_NONE;
-			m_timeZone = RTCLIENT_USER_TIMEZONE_NONE;
+			m_timezone = RTCLIENT_USER_TIMEZONE_NONE;
 			m_privileged = false;
 			m_disabled = true;
 		}

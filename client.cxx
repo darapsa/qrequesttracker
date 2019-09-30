@@ -37,7 +37,7 @@ namespace RTClient {
 			, QString const& signature
 			, QString const& gecos
 			, rtclient_user_lang lang
-			, rtclient_user_timezone timeZone
+			, rtclient_user_timezone timezone
 			, bool disabled
 			, bool privileged)
 	{
@@ -62,7 +62,7 @@ namespace RTClient {
 				, signature.toLatin1().constData()
 				, gecos.toLatin1().constData()
 				, lang
-				, timeZone
+				, timezone
 				, disabled
 				, privileged);
 	}
