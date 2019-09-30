@@ -113,12 +113,12 @@ namespace RTClient {
 			, text.toLatin1().constData());
 	}
 
-	void Client::ticketSearch(QString const& owner)
+	void Client::searchTicket(QString const& owner)
 	{
 		QString query{"Owner='" % owner % "'"};
 		rtclient_search_ticket_list* ticketList = nullptr;
 		rtclient_search_ticket(&ticketList, query.toLatin1().constData());
-		emit ticketSearched(ticketList);
+		emit searchedTicket(ticketList);
 	}
 
 	void Client::ticketHistory(int id)

@@ -61,13 +61,13 @@ namespace RTClient {
 					, QString const& starts = nullptr
 					, QString const& due = nullptr
 					, QString const& text = nullptr);
-			void ticketSearch(QString const& owner);
+			void searchTicket(QString const& owner);
 			void ticketHistory(int id);
 
 		signals:
 			void loggedIn(QString const& name);
 			void userShown(rtclient_user* user);
-			void ticketSearched(rtclient_search_ticket_list* list);
+			void searchedTicket(rtclient_search_ticket_list* list);
 	};
 
 }
