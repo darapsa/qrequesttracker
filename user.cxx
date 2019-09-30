@@ -172,7 +172,7 @@ namespace RTClient {
 		}
 	}
 
-	void User::setLang(rtclient_lang lang)
+	void User::setLang(rtclient_user_lang lang)
 	{
 		if (m_lang != lang) {
 			m_lang = lang;
@@ -180,7 +180,7 @@ namespace RTClient {
 		}
 	}
 
-	void User::setTimeZone(rtclient_timezone timeZone)
+	void User::setTimeZone(rtclient_user_timezone timeZone)
 	{
 		if (m_timeZone != timeZone) {
 			m_timeZone = timeZone;
@@ -310,8 +310,8 @@ namespace RTClient {
 			m_comments = "";
 			m_signature = "";
 			m_gecos = "";
-			m_lang = RTCLIENT_LANG_NONE;
-			m_timeZone = RTCLIENT_TIMEZONE_NONE;
+			m_lang = RTCLIENT_USER_LANG_NONE;
+			m_timeZone = RTCLIENT_USER_TIMEZONE_NONE;
 			m_privileged = false;
 			m_disabled = true;
 		}

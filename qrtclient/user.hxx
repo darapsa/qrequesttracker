@@ -32,8 +32,8 @@ namespace RTClient {
 		Q_PROPERTY(QString comments READ comments WRITE setComments NOTIFY commentsChanged)
 		Q_PROPERTY(QString signature READ signature WRITE setSignature NOTIFY signatureChanged)
 		Q_PROPERTY(QString gecos READ gecos WRITE setGecos NOTIFY gecosChanged)
-		Q_PROPERTY(rtclient_lang lang READ lang WRITE setLang NOTIFY langChanged)
-		Q_PROPERTY(rtclient_timezone timeZone READ timeZone WRITE setTimeZone NOTIFY timeZoneChanged)
+		Q_PROPERTY(rtclient_user_lang lang READ lang WRITE setLang NOTIFY langChanged)
+		Q_PROPERTY(rtclient_user_timezone timeZone READ timeZone WRITE setTimeZone NOTIFY timeZoneChanged)
 		Q_PROPERTY(bool privileged READ privileged WRITE setPrivileged NOTIFY privilegedChanged)
 		Q_PROPERTY(bool disabled READ disabled WRITE setDisabled NOTIFY disabledChanged)
 
@@ -61,8 +61,8 @@ namespace RTClient {
 				, m_comments{""}
 				, m_signature{""}
 				, m_gecos{""}
-				, m_lang{RTCLIENT_LANG_NONE}
-				, m_timeZone{RTCLIENT_TIMEZONE_NONE}
+				, m_lang{RTCLIENT_USER_LANG_NONE}
+				, m_timeZone{RTCLIENT_USER_TIMEZONE_NONE}
 				, m_privileged{false}
 				, m_disabled{true}
 				{}
@@ -89,8 +89,8 @@ namespace RTClient {
 			QString const& comments() const { return m_comments; }
 			QString const& signature() const { return m_signature; }
 			QString const& gecos() const { return m_gecos; }
-			rtclient_lang lang() const { return m_lang; }
-			rtclient_timezone timeZone() const { return m_timeZone; }
+			rtclient_user_lang lang() const { return m_lang; }
+			rtclient_user_timezone timeZone() const { return m_timeZone; }
 			bool privileged() const { return m_privileged; }
 			bool disabled() const { return m_disabled; }
 
@@ -115,8 +115,8 @@ namespace RTClient {
 			void setComments(QString const& comments);
 			void setSignature(QString const& signature);
 			void setGecos(QString const& gecos);
-			void setLang(rtclient_lang lang);
-			void setTimeZone(rtclient_timezone timeZone);
+			void setLang(rtclient_user_lang lang);
+			void setTimeZone(rtclient_user_timezone timeZone);
 			void setPrivileged(bool privileged);
 			void setDisabled(bool disabled);
 
@@ -172,8 +172,8 @@ namespace RTClient {
 			QString m_comments;
 			QString m_signature;
 			QString m_gecos;
-			rtclient_lang m_lang;
-			rtclient_timezone m_timeZone;
+			rtclient_user_lang m_lang;
+			rtclient_user_timezone m_timeZone;
 			bool m_privileged;
 			bool m_disabled;
 	};

@@ -36,8 +36,8 @@ namespace RTClient {
 			, QString const& comments
 			, QString const& signature
 			, QString const& gecos
-			, rtclient_lang lang
-			, rtclient_timezone timeZone
+			, rtclient_user_lang lang
+			, rtclient_user_timezone timeZone
 			, bool disabled
 			, bool privileged)
 	{

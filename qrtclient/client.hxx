@@ -39,9 +39,10 @@ namespace RTClient {
 					, QString const& comments = nullptr
 					, QString const& signature = nullptr
 					, QString const& gecos = nullptr
-					, rtclient_lang lang = RTCLIENT_LANG_NONE
-					, rtclient_timezone timeZone
-						= RTCLIENT_TIMEZONE_NONE
+					, rtclient_user_lang lang
+						= RTCLIENT_USER_LANG_NONE
+					, rtclient_user_timezone timeZone
+						= RTCLIENT_USER_TIMEZONE_NONE
 					, bool disabled = false
 					, bool privileged = false);
 			void userShow(unsigned int id);
