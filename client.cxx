@@ -124,8 +124,7 @@ namespace RTClient {
 	void Client::ticketHistory(int id)
 	{
 		rtclient_ticket_history_list* historyList = nullptr;
-		rtclient_ticket_history(&historyList, id
-				, RTCLIENT_TICKET_FORMAT_L);
+		rtclient_ticket_history(&historyList, id, true);
 		emit gotTicketHistory(historyList);
 	}
 
