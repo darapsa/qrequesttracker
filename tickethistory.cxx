@@ -78,10 +78,12 @@ namespace RTClient {
 
 	void TicketHistoryList::update(rtclient_ticket_history_list* list)
 	{
-		if (list)
+		if (list) {
 			for (size_t i = 0; i < list->length; i++)
 				addTicketHistory
 					(TicketHistory{list->histories[i]});
+			rtclient_ticket_history_list_free(list);
+		}
 		emit updated();
 	}
 
