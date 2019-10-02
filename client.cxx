@@ -121,10 +121,10 @@ namespace RTClient {
 		emit searchedTicket(ticketList);
 	}
 
-	void Client::ticketHistory(int id)
+	void Client::ticketHistory(int id, bool longFormat)
 	{
 		rtclient_ticket_history_list* historyList = nullptr;
-		rtclient_ticket_history(&historyList, id);
+		rtclient_ticket_history(&historyList, id, longFormat);
 		emit gotTicketHistory(historyList);
 	}
 

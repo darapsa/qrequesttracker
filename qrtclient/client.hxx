@@ -63,7 +63,7 @@ namespace RTClient {
 					, QString const& due = nullptr
 					, QString const& text = nullptr);
 			void searchTicket(QString const& owner);
-			void ticketHistory(int id);
+			void ticketHistory(int id, bool longFormat = false);
 
 		signals:
 			void loggedIn(QString const& name);
