@@ -45,7 +45,7 @@ namespace RTClient {
 					) const Q_DECL_OVERRIDE;
 
 		public slots:
-			void update(rtclient_search_ticket_list* ticketList);
+			void update(rtclient_search_ticket_list* list);
 
 		protected:
 			QHash<int, QByteArray> roleNames() const Q_DECL_OVERRIDE;
