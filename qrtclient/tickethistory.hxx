@@ -63,6 +63,7 @@ namespace RTClient {
 	class TicketHistoryList : public QAbstractListModel
 	{
 		Q_OBJECT
+		Q_PROPERTY(int rowCount READ rowCount NOTIFY rowCountChanged)
 
 		public:
 			enum TicketHistoryRoles {
@@ -97,6 +98,7 @@ namespace RTClient {
 			QHash<int, QByteArray> roleNames() const Q_DECL_OVERRIDE;
 
 		signals:
+			void rowCountChanged();
 			void updated();
 
 		private:

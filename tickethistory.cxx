@@ -83,8 +83,8 @@ namespace RTClient {
 				addTicketHistory
 					(TicketHistory{list->histories[i]});
 			rtclient_ticket_history_list_free(list);
+			emit updated();
 		}
-		emit updated();
 	}
 
 }
