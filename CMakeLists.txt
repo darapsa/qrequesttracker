@@ -17,19 +17,9 @@ add_library(${PROJECT_NAME} SHARED
 	client.cxx)
 
 if (ANDROID)
-	if (ANDROID_ABI STREQUAL "arm64-v8a")
-		include_directories(/usr/local/aarch64-linux-android/sysroot/usr/include)
-		target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/aarch64-linux-android/sysroot/usr/lib)
-	elseif (ANDROID_ABI STREQUAL "armeabi-v7a")
-		include_directories(/usr/local/arm-linux-androideabi/sysroot/usr/include)
-		target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/arm-linux-androideabi/sysroot/usr/lib)
-	elseif (ANDROID_ABI STREQUAL "x86")
-		include_directories(/usr/local/i686-linux-android/sysroot/usr/include)
-		target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/i686-linux-android/sysroot/usr/lib)
-	elseif (ANDROID_ABI STREQUAL "x86_64")
-		include_directories(/usr/local/x86_64-linux-android/sysroot/usr/include)
-		target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/x86_64-linux-android/sysroot/usr/lib)
-	endif()
+	include_directories(${CMAKE_SYSROOT}/usr/include)
+	target_link_directories(${PROJECT_NAME} PRIVATE
+		${CMAKE_SYSROOT}/usr/lib/${ANDROID_TOOLCHAIN_NAME}/${ANDROID_NATIVE_API_LEVEL})
 endif()
 
 target_link_libraries(${PROJECT_NAME}
