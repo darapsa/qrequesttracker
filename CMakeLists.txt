@@ -14,7 +14,8 @@ add_library(${PROJECT_NAME} SHARED
 	user.cxx
 	ticket.cxx
 	tickethistory.cxx
-	client.cxx)
+	client.cxx
+	)
 
 if (ANDROID)
 	set(ANDROID_BUILD_ABI_${ANDROID_ABI} 1)
