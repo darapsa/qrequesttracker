@@ -17,14 +17,6 @@ add_library(${PROJECT_NAME} SHARED
 	client.cxx
 	)
 
-if (ANDROID)
-	set(ANDROID_BUILD_ABI_${ANDROID_ABI} 1)
-	set(CMAKE_CXX_STANDARD_LIBRARIES ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/libs/${ANDROID_ABI}/libc++_shared.so)
-	include_directories(${CMAKE_SYSROOT}/usr/include)
-	target_link_directories(${PROJECT_NAME} PRIVATE
-		${CMAKE_SYSROOT}/usr/lib/${ANDROID_TOOLCHAIN_NAME}/${ANDROID_NATIVE_API_LEVEL})
-endif()
-
 target_link_libraries(${PROJECT_NAME}
 	Qt5::Core
 	rtclient
