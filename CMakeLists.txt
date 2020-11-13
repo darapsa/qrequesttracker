@@ -17,6 +17,11 @@ add_library(${PROJECT_NAME} SHARED
 	client.cxx
 	)
 
+if (APPLE)
+	include_directories(/usr/local/include)
+	target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/lib)
+endif()
+
 target_link_libraries(${PROJECT_NAME}
 	Qt5::Core
 	rtclient
