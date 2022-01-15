@@ -1,37 +1,34 @@
 cmake_minimum_required(VERSION 3.5)
-
 project(qrtclient)
-
 set(CMAKE_AUTOMOC ON)
-
 find_package(Qt5Core)
-
-add_library(${PROJECT_NAME} SHARED
+set(HDRS
 	${PROJECT_NAME}/user.hxx
 	${PROJECT_NAME}/ticket.hxx
 	${PROJECT_NAME}/tickethistory.hxx
-	${PROJECT_NAME}/client.hxx
+	)
+set(SRCS
+	${PROJECT_NAME}.hxx
+	${HDRS}
 	user.cxx
 	ticket.cxx
 	tickethistory.cxx
 	client.cxx
 	)
-
-if (APPLE)
+if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
 	include_directories(/usr/local/include)
-	target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/lib)
+	link_directories(/usr/local/lib)
 endif()
-
+if (EMSCRIPTEN OR IOS)
+	add_library(${PROJECT_NAME} STATIC ${SRCS})
+else()
+	add_library(${PROJECT_NAME} SHARED ${SRCS})
+endif()
 target_link_libraries(${PROJECT_NAME}
 	Qt5::Core
 	rtclient
 	)
-
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(FILES
-	${PROJECT_NAME}/user.hxx
-	${PROJECT_NAME}/ticket.hxx
-	${PROJECT_NAME}/tickethistory.hxx
-	${PROJECT_NAME}/client.hxx
-	DESTINATION include/${PROJECT_NAME}
-	)
+include(GNUInstallDirs)
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(FILES ${PROJECT_NAME}.hxx DESTINATION include)
+install(FILES ${HDRS} DESTINATION include/${PROJECT_NAME})

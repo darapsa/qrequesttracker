@@ -1,5 +1,5 @@
 #include <cstddef>
-#include <rtclient/client.h>
+#include <rtclient.h>
 #include "qrtclient/user.hxx"
 
 namespace RTClient {
