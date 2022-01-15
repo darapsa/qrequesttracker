@@ -1,3 +1,0 @@
-[submodule "librtclient"]
-	path = librtclient
-	url = git://darapsa.co.id/librtclient.git
