@@ -25,6 +25,9 @@ void Client::logIn(QString const& name, QString const& password)
 	pwCopy = (char*)malloc(strlen(pwData) + 1);
 	strcpy(pwCopy, pwData);
 	rtclient_login(nCopy, pwCopy, [](rtclient_response* response) {
+#ifdef __EMSCRIPTEN__
+			free(response->userData);
+#endif
 			rtclient_free_response(response);
 			client->emitLoggedIn(QString{nCopy});
 			free(nCopy);
