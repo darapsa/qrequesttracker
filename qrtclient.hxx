@@ -1,5 +1,5 @@
-#ifndef QRTCLIENT_CLIENT_HXX
-#define QRTCLIENT_CLIENT_HXX
+#ifndef QRTCLIENT_HXX
+#define QRTCLIENT_HXX
 
 #include <QObject>
 #include <rtclient/user.h>
@@ -10,9 +10,10 @@ struct rtclient_ticket_history_list;
 
 namespace RTClient {
 
-	class Client : public QObject
-	{
-		Q_OBJECT
+class Client : public QObject
+{
+	Q_OBJECT
+
 
 		public:
 			Client(char const* url, char const* certificate = nullptr);
@@ -74,4 +75,4 @@ namespace RTClient {
 
 }
 
-#endif // QRTCLIENT_CLIENT_HXX
+#endif
