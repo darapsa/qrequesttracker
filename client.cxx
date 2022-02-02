@@ -17,56 +17,56 @@ namespace RTClient {
 		emit loggedIn(name);
 	}
 
-	void Client::userNew(QString const& name
-			, QString const& password
-			, QString const& emailAddress
-			, QString const& realName
-			, QString const& nickName
-			, QString const& organization
-			, QString const& address1
-			, QString const& address2
-			, QString const& city
-			, QString const& state
-			, QString const& zip
-			, QString const& country
-			, QString const& homePhone
-			, QString const& workPhone
-			, QString const& mobilePhone
-			, QString const& pagerPhone
-			, QString const& contactInfo
-			, QString const& comments
-			, QString const& signature
-			, QString const& gecos
-			, rtclient_user_lang lang
-			, rtclient_user_timezone timezone
-			, bool disabled
-			, bool privileged)
-	{
-		rtclient_user_new(name.toLatin1().constData()
-				, password.toLatin1().constData()
-				, emailAddress.toLatin1().constData()
-				, realName.toLatin1().constData()
-				, nickName.toLatin1().constData()
-				, organization.toLatin1().constData()
-				, address1.toLatin1().constData()
-				, address2.toLatin1().constData()
-				, city.toLatin1().constData()
-				, state.toLatin1().constData()
-				, zip.toLatin1().constData()
-				, country.toLatin1().constData()
-				, homePhone.toLatin1().constData()
-				, workPhone.toLatin1().constData()
-				, mobilePhone.toLatin1().constData()
-				, pagerPhone.toLatin1().constData()
-				, contactInfo.toLatin1().constData()
-				, comments.toLatin1().constData()
-				, signature.toLatin1().constData()
-				, gecos.toLatin1().constData()
-				, lang
-				, timezone
-				, disabled
-				, privileged);
-	}
+void Client::userNew(QString const& name,
+		QString const& password,
+		QString const& emailAddress,
+		QString const& realName,
+		QString const& nickName,
+		QString const& organization,
+		QString const& address1,
+		QString const& address2,
+		QString const& city,
+		QString const& state,
+		QString const& zip,
+		QString const& country,
+		QString const& homePhone,
+		QString const& workPhone,
+		QString const& mobilePhone,
+		QString const& pagerPhone,
+		QString const& contactInfo,
+		QString const& comments,
+		QString const& signature,
+		QString const& gecos,
+		rtclient_user_lang lang,
+		rtclient_user_timezone timezone,
+		bool disabled,
+		bool privileged)
+{
+	rtclient_user_new(name.toLatin1().constData(),
+			password.toLatin1().constData(),
+			emailAddress.toLatin1().constData(),
+			realName.toLatin1().constData(),
+			nickName.toLatin1().constData(),
+			organization.toLatin1().constData(),
+			address1.toLatin1().constData(),
+			address2.toLatin1().constData(),
+			city.toLatin1().constData(),
+			state.toLatin1().constData(),
+			zip.toLatin1().constData(),
+			country.toLatin1().constData(),
+			homePhone.toLatin1().constData(),
+			workPhone.toLatin1().constData(),
+			mobilePhone.toLatin1().constData(),
+			pagerPhone.toLatin1().constData(),
+			contactInfo.toLatin1().constData(),
+			comments.toLatin1().constData(),
+			signature.toLatin1().constData(),
+			gecos.toLatin1().constData(),
+			lang,
+			timezone,
+			disabled,
+			privileged);
+}
 
 	void Client::userShow(unsigned int id)
 	{
@@ -82,36 +82,36 @@ namespace RTClient {
 		emit userShown(user);
 	}
 
-	void Client::ticketNew(QString const& queue
-			, QString const& requestor
-			, QString const& subject
-			, QString const& cc
-			, QString const& adminCc
-			, QString const& owner
-			, QString const& status
-			, QString const& priority
-			, QString const& initialPriority
-			, QString const& finalPriority
-			, QString const& timeEstimated
-			, QString const& starts
-			, QString const& due
-			, QString const& text)
-	{
-		rtclient_ticket_new(queue.toLatin1().constData()
-			, requestor.toLatin1().constData()
-			, subject.toLatin1().constData()
-			, cc.toLatin1().constData()
-			, adminCc.toLatin1().constData()
-			, owner.toLatin1().constData()
-			, status.toLatin1().constData()
-			, priority.toLatin1().constData()
-			, initialPriority.toLatin1().constData()
-			, finalPriority.toLatin1().constData()
-			, timeEstimated.toLatin1().constData()
-			, starts.toLatin1().constData()
-			, due.toLatin1().constData()
-			, text.toLatin1().constData());
-	}
+void Client::ticketNew(QString const& queue,
+		QString const& requestor,
+		QString const& subject,
+		QString const& cc,
+		QString const& adminCc,
+		QString const& owner,
+		QString const& status,
+		QString const& priority,
+		QString const& initialPriority,
+		QString const& finalPriority,
+		QString const& timeEstimated,
+		QString const& starts,
+		QString const& due,
+		QString const& text)
+{
+	rtclient_ticket_new(queue.toLatin1().constData(),
+			requestor.toLatin1().constData(),
+			subject.toLatin1().constData(),
+			cc.toLatin1().constData(),
+			adminCc.toLatin1().constData(),
+			owner.toLatin1().constData(),
+			status.toLatin1().constData(),
+			priority.toLatin1().constData(),
+			initialPriority.toLatin1().constData(),
+			finalPriority.toLatin1().constData(),
+			timeEstimated.toLatin1().constData(),
+			starts.toLatin1().constData(),
+			due.toLatin1().constData(),
+			text.toLatin1().constData());
+}
 
 	void Client::searchTicket(QString const& owner)
 	{
