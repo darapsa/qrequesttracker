@@ -3,6 +3,18 @@
 
 namespace RTClient {
 
+TicketHistoryList::TicketHistoryList(struct rtclient_ticket_history** list,
+		QObject* parent)
+	: QAbstractListModel{parent}
+{
+	size_t i = 0;
+	while (list[i]) {
+		beginInsertRows(QModelIndex(), rowCount(), rowCount());
+		histories << TicketHistory{list[i++]};
+		endInsertRows();
+	}
+}
+
 int TicketHistoryList::rowCount(QModelIndex const& parent) const
 {
 	Q_UNUSED(parent)
@@ -65,23 +77,5 @@ QHash<int, QByteArray> TicketHistoryList::roleNames() const
 		{AttachmentsRole, "attachments"}*/
 	};
 }
-
-	void TicketHistoryList::addTicketHistory(TicketHistory const& history)
-	{
-		beginInsertRows(QModelIndex(), rowCount(), rowCount());
-		histories << history;
-		endInsertRows();
-	}
-
-	void TicketHistoryList::update(rtclient_ticket_history_list* list)
-	{
-		if (list) {
-			for (size_t i = 0; i < list->length; i++)
-				addTicketHistory
-					(TicketHistory{list->histories[i]});
-			rtclient_ticket_history_list_free(list);
-			emit updated();
-		}
-	}
 
 }

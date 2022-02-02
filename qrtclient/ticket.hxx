@@ -3,9 +3,6 @@
 
 #include <QAbstractListModel>
 #include <rtclient/ticket.h>
-#include <rtclient/search.h>
-
-struct rtclient_search_ticket_list;
 
 namespace RTClient {
 
@@ -34,8 +31,12 @@ class TicketList : public QAbstractListModel
 			SubjectRole
 		};
 
-			explicit TicketList(QObject* parent = nullptr)
-				: QAbstractListModel{parent} {}
+		TicketList(QObject* parent = nullptr)
+			: QAbstractListModel{parent} {}
+		TicketList(struct rtclient_ticket** list,
+				QObject* parent = nullptr);
+		TicketList(TicketList const& list) { tickets = list.tickets; }
+		~TicketList() {}
 
 		int rowCount(QModelIndex const& parent
 				= QModelIndex()) const Q_DECL_OVERRIDE;
@@ -46,14 +47,12 @@ class TicketList : public QAbstractListModel
 	protected:
 		QHash<int, QByteArray> roleNames() const Q_DECL_OVERRIDE;
 
-		signals:
-			void updated();
-			void rowCountChanged();
-
 	private:
 		QList<Ticket> tickets;
 };
 
 }
+
+Q_DECLARE_METATYPE(RTClient::TicketList)
 
 #endif

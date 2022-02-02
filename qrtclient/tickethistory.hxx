@@ -5,8 +5,6 @@
 #include <QDateTime>
 #include <rtclient/ticket.h>
 
-struct rtclient_ticket_history_list;
-
 namespace RTClient {
 
 class TicketHistory
@@ -63,7 +61,6 @@ class TicketHistory
 class TicketHistoryList : public QAbstractListModel
 {
 	Q_OBJECT
-		Q_PROPERTY(int rowCount READ rowCount NOTIFY rowCountChanged)
 
 	public:
 		enum TicketHistoryRoles {
@@ -82,8 +79,15 @@ class TicketHistoryList : public QAbstractListModel
 			AttachmentsRole*/
 		};
 
-			explicit TicketHistoryList(QObject* parent = nullptr)
-				: QAbstractListModel{parent} {}
+		TicketHistoryList(QObject* parent = nullptr)
+			: QAbstractListModel{parent} {}
+		TicketHistoryList(struct rtclient_ticket_history** list,
+				QObject* parent = nullptr);
+		TicketHistoryList(TicketHistoryList const& list)
+		{
+			histories = list.histories;
+		}
+		~TicketHistoryList() {}
 
 		int rowCount(QModelIndex const& parent
 				= QModelIndex()) const Q_DECL_OVERRIDE;
@@ -91,20 +95,15 @@ class TicketHistoryList : public QAbstractListModel
 				int role = Qt::DisplayRole
 			     ) const Q_DECL_OVERRIDE;
 
-		public slots:
-			void update(rtclient_ticket_history_list* list);
-
 	protected:
 		QHash<int, QByteArray> roleNames() const Q_DECL_OVERRIDE;
-
-		signals:
-			void rowCountChanged();
-			void updated();
 
 	private:
 		QList<TicketHistory> histories;
 };
 
 }
+
+Q_DECLARE_METATYPE(RTClient::TicketHistoryList)
 
 #endif

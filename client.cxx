@@ -1,21 +1,36 @@
 #include <QStringBuilder>
 #include <rtclient.h>
+#include <rtclient/user.h>
 #include <rtclient/ticket.h>
 #include <rtclient/search.h>
 #include "qrtclient.hxx"
 
 namespace RTClient {
 
-	Client::Client(char const* url, char const* certificate)
-	{
-		rtclient_init(url, certificate);
-	}
+static Client* client;
+static char *nCopy, *pwCopy;
 
-	void Client::logIn(QString const& name, QString const& password)
-	{
-		rtclient_login(name.toLatin1().constData(), password.toLatin1().constData());
-		emit loggedIn(name);
-	}
+Client::Client(char const* url, char const* cookies, char const* certificate)
+{
+	client = this;
+	rtclient_init(url, cookies, certificate);
+}
+
+void Client::logIn(QString const& name, QString const& password)
+{
+	auto nData = name.toLatin1().constData();
+	nCopy = (char*)malloc(strlen(nData) + 1);
+	strcpy(nCopy, nData);
+	auto pwData = password.toLatin1().constData();
+	pwCopy = (char*)malloc(strlen(pwData) + 1);
+	strcpy(pwCopy, pwData);
+	rtclient_login(nCopy, pwCopy, [](rtclient_response* response) {
+			rtclient_free_response(response);
+			client->emitLoggedIn(QString{nCopy});
+			free(nCopy);
+			free(pwCopy);
+		});
+}
 
 void Client::userNew(QString const& name,
 		QString const& password,
@@ -68,19 +83,22 @@ void Client::userNew(QString const& name,
 			privileged);
 }
 
-	void Client::userShow(unsigned int id)
-	{
-		rtclient_user* user = nullptr;
-		rtclient_user_showid(&user, id);
-		emit userShown(user);
-	}
+void Client::userShow(unsigned int id)
+{
+	rtclient_user_showid(id, [](struct rtclient_user* user) {
+			client->emitUserShown(User{user});
+			rtclient_user_free(user);
+		});
+}
 
-	void Client::userShow(QString const& name)
-	{
-		rtclient_user* user = nullptr;
-		rtclient_user_showname(&user, name.toLatin1().constData());
-		emit userShown(user);
-	}
+void Client::userShow(QString const& name)
+{
+	rtclient_user_showname(name.toLatin1().constData(),
+		[](struct rtclient_user* user) {
+			client->emitUserShown(User{user});
+			rtclient_user_free(user);
+		});
+}
 
 void Client::ticketNew(QString const& queue,
 		QString const& requestor,
@@ -113,24 +131,53 @@ void Client::ticketNew(QString const& queue,
 			text.toLatin1().constData());
 }
 
-	void Client::searchTicket(QString const& owner)
-	{
-		QString query{"Owner='" % owner % "'"};
-		rtclient_search_ticket_list* list = nullptr;
-		rtclient_search_ticket(&list, query.toLatin1().constData());
-		emit searchedTicket(list);
-	}
+void Client::searchTicket(QString const& owner)
+{
+	QString query{"Owner='" % owner % "'"};
+	rtclient_search_ticket(query.toLatin1().constData(),
+		[](struct rtclient_ticket** list) {
+			client->emitSearchedTicket(TicketList{list});
+			size_t i = 0;
+			while (list[i]) {
+				free(list[i]->subject);
+				free(list[i++]);
+			}
+		});
+}
 
-	void Client::ticketHistory(int id, bool longFormat)
-	{
-		rtclient_ticket_history_list* historyList = nullptr;
-		rtclient_ticket_history(&historyList, id, longFormat);
-		emit gotTicketHistory(historyList);
-	}
+void Client::ticketHistoryList(int id, bool longFormat)
+{
+	rtclient_ticket_history_list(id, longFormat,
+		[](struct rtclient_ticket_history** list) {
+			client->emitGotTicketHistoryList(TicketHistoryList{list});
+			size_t i = 0;
+//			while (list[i]) rtclient_ticket_history_free(list[i++]);
+		});
+}
 
-	Client::~Client()
-	{
-		rtclient_cleanup();
-	}
+void Client::emitLoggedIn(QString const& name)
+{
+	emit loggedIn(name);
+}
+
+void Client::emitUserShown(User const& user)
+{
+	emit userShown(user);
+}
+
+void Client::emitSearchedTicket(TicketList const& list)
+{
+	emit searchedTicket(list);
+}
+
+void Client::emitGotTicketHistoryList(TicketHistoryList const& list)
+{
+	emit gotTicketHistoryList(list);
+}
+
+Client::~Client()
+{
+	rtclient_cleanup();
+}
 
 }

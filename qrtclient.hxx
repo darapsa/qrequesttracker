@@ -2,11 +2,9 @@
 #define QRTCLIENT_HXX
 
 #include <QObject>
-#include <rtclient/user.h>
-
-struct rtclient_user;
-struct rtclient_search_ticket_list;
-struct rtclient_ticket_history_list;
+#include "qrtclient/user.hxx"
+#include "qrtclient/ticket.hxx"
+#include "qrtclient/tickethistory.hxx"
 
 namespace RTClient {
 
@@ -14,6 +12,10 @@ class Client : public QObject
 {
 	Q_OBJECT
 
+	public:
+		Client(char const* url, char const* cookies,
+				char const* certificate = nullptr);
+		~Client();
 
 	public slots:
 		void logIn(QString const& name, QString const& password);
@@ -61,17 +63,19 @@ class Client : public QObject
 				QString const& text = nullptr);
 		void searchTicket(QString const& owner);
 		void ticketHistoryList(int id, bool longFormat = false);
-		public:
-			Client(char const* url, char const* certificate = nullptr);
-			~Client();
 
+	signals:
+		void loggedIn(QString const& name);
+		void userShown(User const& user);
+		void searchedTicket(TicketList const& list);
+		void gotTicketHistoryList(TicketHistoryList const& list);
 
-		signals:
-			void loggedIn(QString const& name);
-			void userShown(rtclient_user* user);
-			void searchedTicket(rtclient_search_ticket_list* list);
-			void gotTicketHistory(rtclient_ticket_history_list* list);
-	};
+	protected:
+		void emitLoggedIn(QString const&);
+		void emitUserShown(User const&);
+		void emitSearchedTicket(TicketList const&);
+		void emitGotTicketHistoryList(TicketHistoryList const&);
+};
 
 }
 

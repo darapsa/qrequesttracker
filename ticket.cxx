@@ -3,6 +3,18 @@
 
 namespace RTClient {
 
+TicketList::TicketList(struct rtclient_ticket** list,
+		QObject* parent)
+	: QAbstractListModel{parent}
+{
+	size_t i = 0;
+	while (list[i]) {
+		beginInsertRows(QModelIndex(), rowCount(), rowCount());
+		tickets << Ticket{list[i++]};
+		endInsertRows();
+	}
+}
+
 int TicketList::rowCount(QModelIndex const& parent) const
 {
 	Q_UNUSED(parent)
@@ -32,23 +44,5 @@ QHash<int, QByteArray> TicketList::roleNames() const
 		{SubjectRole, "subject"}
 	};
 }
-
-	void TicketList::addTicket(Ticket const& ticket)
-	{
-		beginInsertRows(QModelIndex(), rowCount(), rowCount());
-		tickets << ticket;
-		endInsertRows();
-		emit rowCountChanged();
-	}
-
-	void TicketList::update(rtclient_search_ticket_list* list)
-	{
-		if (list) {
-			for (size_t i = 0; i < list->length; i++)
-				addTicket(Ticket{list->tickets[i]});
-			rtclient_search_ticket_free(list);
-			emit updated();
-		}
-	}
 
 }

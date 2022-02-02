@@ -4,8 +4,6 @@
 #include <QObject>
 #include <rtclient/user.h>
 
-struct rtclient_user;
-
 namespace RTClient {
 
 class User : public QObject
@@ -121,8 +119,6 @@ class User : public QObject
 		void setTimeZone(rtclient_user_timezone timezone);
 		void setPrivileged(bool privileged);
 		void setDisabled(bool disabled);
-		public slots:
-			void update(rtclient_user* user);
 
 	signals:
 		void idChanged();
