@@ -154,7 +154,7 @@ void Client::ticketHistoryList(int id, bool longFormat)
 		[](struct rtclient_ticket_history** list) {
 			client->emitGotTicketHistoryList(TicketHistoryList{list});
 			size_t i = 0;
-//			while (list[i]) rtclient_ticket_history_free(list[i++]);
+			while (list[i]) rtclient_ticket_history_free(list[i++]);
 		});
 }
 
